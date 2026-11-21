@@ -1,0 +1,17 @@
+# Artefak build
+/target
+/release
+
+# Aset HD (terlalu besar untuk repo)
+/assets/default-hd
+/assets/hd-source
+
+# Sumber Symbian hasil ekstraksi SIS dan artefak analisis
+/extracted
+/08_0_Tiger.png
+/09_0_Technic.png
+/10_0_Ferrari.png
+
+# Python
+__pycache__/
+*.pyc

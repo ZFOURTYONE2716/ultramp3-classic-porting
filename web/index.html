@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="id">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UltraMP3 Web</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./player.css">
+<main>
+  <header>
+    <label class="button">Buka audio <input id="files" type="file" accept=".mp3,.wav" multiple disabled></label>
+    <button id="demo" type="button" disabled>Putar demo</button>
+  </header>
+  <p id="status" role="status">Memuat UltraMP3…</p>
+  <canvas id="player" aria-label="Pemutar UltraMP3"></canvas>
+</main>
+<script type="module" src="./player.js"></script>
+</html>
