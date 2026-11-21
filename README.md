@@ -2,9 +2,9 @@
 
 ## Pratinjau aplikasi
 
-| Skin Tiger | Skin &lt;DEFAULT&gt; |
+| Skin Technic | Skin &lt;DEFAULT&gt; |
 |---|---|
-| ![UltraMP3 dengan skin Tiger](assets/preview/skin-tiger.png) | ![UltraMP3 dengan skin Default](assets/preview/skin-default.png) |
+| ![UltraMP3 dengan skin Technic](assets/preview/skin-technic.png) | ![UltraMP3 dengan skin Default](assets/preview/skin-default.png) |
 
 Port parsial UltraMP3 1.52 berdasarkan kode ARM dan aset yang dipulihkan dari SIS. Instalasi baru mulai dengan tema <DEFAULT> dari SIS. Tema Default HD dengan tekstur 4K dan Orbit bertema luar angkasa tersedia di Menu > Skin. Pilih Skin beberapa kali sampai Orbit tampil. Tekan F11 untuk layar penuh.
 
