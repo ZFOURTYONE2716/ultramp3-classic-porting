@@ -6,6 +6,12 @@ edition = "2021"
 [lib]
 crate-type = ["cdylib", "rlib"]
 
+[features]
+default = []
+# Menyertakan skin Default HD dan font HD dari assets/default-hd.
+# Aktifkan dengan `cargo build --features hd` hanya bila folder aset itu ada.
+hd = []
+
 [dependencies]
 eframe = "0.32"
 image = { version = "0.25", default-features = false, features = ["png"] }

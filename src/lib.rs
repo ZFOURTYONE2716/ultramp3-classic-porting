@@ -147,6 +147,7 @@ type DecodeResult = Result<tempfile::TempPath, String>;
 struct App {
     skins: Vec<Skin>,
     skin: usize,
+    initial_skin: Option<&'static str>,
     queue: Vec<Entry>,
     current: Option<usize>,
     track: Option<Track>,
@@ -203,7 +204,10 @@ impl App {
     fn apply_settings(&mut self, contents: &str) {
         for (key, value) in contents.lines().filter_map(|line| line.split_once('=')) {
             match (key, value) {
-                ("skin", value) => self.skin = value.parse().unwrap_or(0),
+                ("skin", value) => {
+                    self.skin = value.parse().unwrap_or(0);
+                    self.initial_skin = None;
+                }
                 ("volume", value) => self.volume = value.parse::<u32>().unwrap_or(80).min(100),
                 ("repeat", value) => self.repeat = value == "1",
                 ("remaining", value) => self.remaining = value == "1",
@@ -1473,6 +1477,13 @@ impl eframe::App for App {
     fn update(&mut self, ctx: &egui::Context, _: &mut eframe::Frame) {
         if self.skins.is_empty() {
             self.skins = Skin::load(ctx);
+            if let Some(name) = self.initial_skin.take() {
+                self.skin = self
+                    .skins
+                    .iter()
+                    .position(|skin| skin.name == name)
+                    .unwrap_or(self.skin);
+            }
             if self.skin >= self.skins.len() {
                 self.skin = 0;
             }
@@ -1527,7 +1538,7 @@ pub fn run_native() -> eframe::Result {
         Box::new(|_| {
             let mut app = App {
                 selected: 2,
-                skin: 1,
+                initial_skin: Some("<DEFAULT>"),
                 volume: 80,
                 play_minimized: true,
                 state_dir: state::directory(),

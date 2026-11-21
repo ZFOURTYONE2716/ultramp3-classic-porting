@@ -43,7 +43,7 @@ impl WebPlayer {
                 Box::new(|_| {
                     let mut app = App {
                         selected: 2,
-                        skin: 5,
+                        initial_skin: Some("Orbit"),
                         volume: 80,
                         ..Default::default()
                     };

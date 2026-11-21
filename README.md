@@ -12,7 +12,7 @@ Menu pemutar menyediakan play mode, repeat, visualization, skin, time display, p
 
 Audio memakai WASAPI. MP3 dan WAV didekode langsung. S3M, MOD, XM dan IT memakai libopenmpt yang disertakan. Simpan DLL di samping EXE. Dua demo ada di folder `Demo`.
 
-Build dari sumber dengan `cargo build --release --locked`. Lihat `E32-NOTES.md` untuk bukti dan batas port. Penghapusan fisik, operasi massal pada tanda, file manager lengkap, pemasangan skin eksternal, seek per pola tracker, dan kesetaraan runtime Symbian masih terbuka.
+Build dari sumber dengan `cargo build --release --locked`. Tema Default HD bersifat opsional: build standar tidak memerlukan `assets/default-hd`, sehingga tetap berhasil walau aset itu tidak ada. Untuk menyertakan skin Default HD dan font 4K-nya, jalankan `cargo build --release --locked --features hd` dengan folder `assets/default-hd` tersedia. Lihat `E32-NOTES.md` untuk bukti dan batas port. Penghapusan fisik, operasi massal pada tanda, file manager lengkap, pemasangan skin eksternal, seek per pola tracker, dan kesetaraan runtime Symbian masih terbuka.
 
 
 

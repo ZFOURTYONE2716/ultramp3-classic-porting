@@ -8,7 +8,8 @@ type SkinData = (
     &'static str,
     bool,
 );
-const SKIN_DATA: [SkinData; 6] = [
+#[cfg(feature = "hd")]
+static HD_SKINS: &[SkinData] = &[
     (
         "Default HD",
         include_bytes!("../assets/default-hd/skin.png"),
@@ -16,6 +17,9 @@ const SKIN_DATA: [SkinData; 6] = [
         include_str!("../assets/default/skin.ini"),
         true,
     ),
+];
+
+static CORE_SKINS: &[SkinData] = &[
     (
         "<DEFAULT>",
         include_bytes!("../assets/default/skin.png"),
@@ -134,14 +138,18 @@ impl Skin {
             include_bytes!("../assets/font.png"),
             false,
         );
+        #[cfg(feature = "hd")]
         let hd_font = texture(
             ctx,
             "HD bitmap font",
             include_bytes!("../assets/default-hd/font.png"),
             true,
         );
-        SKIN_DATA
-            .iter()
+        #[cfg(feature = "hd")]
+        let skins = HD_SKINS.iter().chain(CORE_SKINS.iter());
+        #[cfg(not(feature = "hd"))]
+        let skins = CORE_SKINS.iter();
+        skins
             .map(|&(name, bg, sprites, config, hd)| {
                 let layout = lines(config)
                     .map(|(id, fields)| {
@@ -158,9 +166,13 @@ impl Skin {
                         (id, (Vec2::new(x, y), colors))
                     })
                     .collect();
+                #[cfg(feature = "hd")]
+                let bitmap_font = if hd { hd_font.clone() } else { font.clone() };
+                #[cfg(not(feature = "hd"))]
+                let bitmap_font = font.clone();
                 Self {
                     name,
-                    font: if hd { hd_font.clone() } else { font.clone() },
+                    font: bitmap_font,
                     background: texture(ctx, name, bg, hd),
                     sprites: texture(ctx, &format!("{name} sprites"), sprites, hd),
                     layout,
